@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { RegistrationCtx } from "../Ctx";
+import "./index.css";
 
 const body = document.querySelector("body");
 
@@ -25,16 +26,18 @@ export class Modal extends React.Component {
   
     render () {
         const Modal = (
-          <div className="modal">
-            <span>Регистрация выполнена успешно !</span>
-            <span> Логин: {this.context.login}</span>
-            <span>Пароль: {this.context.password}</span>
-            <span>Пол: {this.context.gender}</span>
-            {this.context.getNews && <span>Вы подписались на новости</span>}
-            {!this.context.getNews && <span>Вы не подписались на новости</span>}
-            <button type="button" onClick={this.props.onClick} onClose={this.props.onClose}>
-              ок
-            </button>
+          <div className="wrapper">
+            <div className="modal">
+              <span className="modalText">Регистрация выполнена успешно !</span>
+              <span className="modalText"> Логин: {this.context.login}</span>
+              <span className="modalText">Пароль: {this.context.password}</span>
+              <span className="modalText">Пол: {this.context.gender}</span>
+              {this.context.getNews && <span className="modalText">Вы подписались на новости</span>}
+              {!this.context.getNews && <span className="modalText">Вы не подписались на новости</span>}
+              <button className="modalCloseBtn" type="button" onClick={this.props.onClick} onClose={this.props.onClose}>
+                ок
+              </button>
+            </div>
           </div>
         );
         return ReactDOM.createPortal(Modal, body);

@@ -4,6 +4,8 @@ import { GenderOptions, GENDERS} from "./constant";
 import { Modal } from "./Modal/Modal";
 import {ErrorBoundary} from "./ErrorBoundary/ErrorBoundary";
 import { RegistrationCtx } from "./Ctx";
+import style from "./app.module.css";
+import "./index.css"
 
 export class App extends React.Component {
   state = {
@@ -63,19 +65,19 @@ export class App extends React.Component {
     } = this.state
 
     return (
-      <div>
-        <h1>Регистрационная форма:</h1>
-        <form>
-          <input placeholder="Login ..." type="text" value={login} onChange={this.handleInputLogin}/>
-          {errorLogin && <span>{errorLogin}</span>}
-          <input placeholder="Password ..." type="password" value={password} onChange={this.handleInputPassword}/>
-          {errorPassword && <span>{errorPassword}</span>}
-          <CheckboxGroup options={GenderOptions} value={gender} onChange={this.toggleGender}/>
-          <div>
-            <span>Подпишитесь на новости!</span>
+      <div className={style.wrapper}>
+        <h1 className={style.title}>Регистрационная форма:</h1>
+        <form className={style.form}>
+          <input className={style.input} placeholder="Login ..." type="text" value={login} onChange={this.handleInputLogin}/>
+          {errorLogin && <span className={style.textError}>{errorLogin}</span>}
+          <input className={style.input} placeholder="Password ..." type="password" value={password} onChange={this.handleInputPassword}/>
+          {errorPassword && <span className={style.textError}>{errorPassword}</span>}
+          <CheckboxGroup className={style.checkbox} options={GenderOptions} value={gender} onChange={this.toggleGender}/>
+          <div className={style.news}>
+            <span className={style.textNews}>Подпишитесь на новости!</span>
             <input type="checkbox" checked={getNews} onChange={this.handleCheckbox}/>
           </div>
-          <button type="button" onClick={this.handleRegistrationBtn} >Зарегистрироваться</button>
+          <button className={style.submitBtn} type="button" onClick={this.handleRegistrationBtn} >Зарегистрироваться</button>
         </form>
         <ErrorBoundary>
           <RegistrationCtx.Provider value={this.state}>
